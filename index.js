@@ -51,4 +51,15 @@ app.get("/update", async (req, res) => {
 });
 
 
+app.get("/views", async (req, res) => {
+
+    const client = await MongoClient.connect(uri);
+    console.log("connected");
+    const db = client.db('analysis_db');
+    const collection = db.collection('analysis_coll');
+    const result= await collection.findOneAndUpdate({item:'views'},{$inc:{number:1}});
+    client.close();
+    res.send({'status':'True'});
+});
+
 app.listen(3000);
