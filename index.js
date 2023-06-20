@@ -59,7 +59,6 @@ app.get("/views", async (req, res) => {
     const collection = db.collection('analysis_coll');
     const result= await collection.findOneAndUpdate({item:'views'},{$inc:{number:1}});
     client.close();
-    res.send({'status':'True'});
 });
 
 app.listen(3000);
